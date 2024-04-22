@@ -7,14 +7,14 @@ class Node:
 def tree_by_levels(node: 'Node'):
     if not node:
         return []
-    queue = deque([node])
+    queue = [node]
     result = []
     while queue:
-        result.append(queue.popleft().value)
-        if result[-1].left:
+        node = queue.pop(0)
+        result.append(node.value)
+
+        if node.left:
             queue.append(node.left)
-        if result[-1].right:
+        if node.right:
             queue.append(node.right)
     return result
-
-    
