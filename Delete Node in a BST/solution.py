@@ -13,11 +13,13 @@ class Solution:
             if not root.right:
                 return root.left
             else:
-                root = root.right
-                while root.left:
-                    root = root.left
-                root.right = self.deleteNode(root.right, root.val)
+                next_ = root.right
+                while next_.left:
+                    next_ = next_.left
+                root.val = next_.val
+                root.right = self.deleteNode(root.right, next_.val)
         if key < root.val:
             root.left = self.deleteNode(root.left, key)
         elif key > root.val:
             root.right = self.deleteNode(root.right, key)
+        return root
